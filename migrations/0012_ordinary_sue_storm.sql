@@ -1,1 +1,0 @@
-ALTER TABLE "token" DROP COLUMN IF EXISTS "id";

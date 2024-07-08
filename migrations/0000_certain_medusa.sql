@@ -4,15 +4,16 @@ CREATE TABLE IF NOT EXISTS "role" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "token" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"user_id" text
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"user_id" integer
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"email" text NOT NULL,
-	"role_id" serial NOT NULL
+	"password" text NOT NULL,
+	"role_id" integer
 );
 --> statement-breakpoint
 DO $$ BEGIN
