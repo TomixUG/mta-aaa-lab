@@ -9,8 +9,6 @@ async function auth(event: RequestEvent): Promise<User | undefined> {
   const tokenCookie = event.cookies.get(constants.cookieName);
   if (!tokenCookie) return undefined;
 
-  console.log(tokenCookie);
-
   // check the token
   const query = await db
     .select()
