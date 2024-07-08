@@ -13,6 +13,8 @@ export const user = pgTable("user", {
   roleId: integer("role_id").references(() => role.id),
 });
 
+export type User = typeof user.$inferSelect;
+
 export const token = pgTable("token", {
   id: uuid("id").primaryKey().defaultRandom(),
   userId: integer("user_id").references(() => user.id),

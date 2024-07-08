@@ -1,8 +1,9 @@
+import { redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
-import { db } from "$lib/db/db.server";
-import { role } from "$lib/db/schema";
 
-export const load: PageServerLoad = async ({ params }) => {
-  const result = await db.select().from(role);
-  return { result };
+export const load: PageServerLoad = async ({ params, locals }) => {
+  const auth = locals.auth;
+  if (!auth) redirect(302, "/auth");
+
+  console.log(auth);
 };

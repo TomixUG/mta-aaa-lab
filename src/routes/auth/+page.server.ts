@@ -53,10 +53,7 @@ export const actions: Actions = {
   },
 };
 
-export const load: PageServerLoad = async ({ cookies }) => {
-  if (cookies.get(constants.cookieName)) {
-    // if check auth, redirect
-    //   console.log("redirecting to /");
-    redirect(302, "/dashboard");
-  }
+export const load: PageServerLoad = async ({ locals }) => {
+  const auth = locals.auth;
+  if (auth) redirect(302, "/dashboard");
 };
