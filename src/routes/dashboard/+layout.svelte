@@ -12,7 +12,7 @@
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="flex flex-row gap-2 text-sm">
         <Icon icon="mdi:user" class="text-xl" />
-        {data.name}
+        {data.user.name}
         <Icon icon="mingcute:down-fill" class="text-xl" />
       </div>
 
@@ -23,7 +23,7 @@
         <div class="card-body">
           <div>
             <span class="font-bold">Role:</span>
-            {data.roleId}
+            {data.role.name}
           </div>
           <a href="/logout" class="btn btn-accent">Logout</a>
         </div>

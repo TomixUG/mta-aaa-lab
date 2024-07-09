@@ -15,6 +15,11 @@ export const user = pgTable("user", {
 
 export type User = typeof user.$inferSelect;
 
+export type Auth = {
+  user: typeof user.$inferSelect;
+  role: typeof role.$inferInsert;
+};
+
 export const token = pgTable("token", {
   id: uuid("id").primaryKey().defaultRandom(),
   userId: integer("user_id").references(() => user.id),
