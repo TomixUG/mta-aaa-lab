@@ -13,13 +13,25 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 
   // normal users dont have access
   if (auth.role.id === 2) {
-    redirect(302, "/dashboard/forbidden");
+    return redirect(302, "/dashboard/forbidden");
   }
 
   const parameter = params.slug;
 
-  // check the token
-  const query = await db.select().from(user);
+  const queryName = await db
+    .select()
+    .from(user)
+    .where(sql`${user.id} = ${parameter}`);
 
-  return { query: query };
+  if (queryName.length === 0) {
+    return redirect(302, "/dashboard/");
+  }
+
+  // check the token
+  const query = await db
+    .select()
+    .from(paycheck)
+    .where(sql`${paycheck.user_id} = ${parameter}`);
+
+  return { name: queryName[0].name, query: query };
 };
