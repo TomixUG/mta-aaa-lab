@@ -8,6 +8,27 @@
       "when": 1720467673317,
       "tag": "0000_certain_medusa",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1729805840634,
+      "tag": "0001_far_vampiro",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729806194871,
+      "tag": "0002_lame_molly_hayes",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1729806263686,
+      "tag": "0003_keen_viper",
+      "breakpoints": true
     }
   ]
 }

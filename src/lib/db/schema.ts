@@ -24,3 +24,12 @@ export const token = pgTable("token", {
   id: uuid("id").primaryKey().defaultRandom(),
   userId: integer("user_id").references(() => user.id),
 });
+
+export const paycheck = pgTable("paycheck", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  user_id: integer("user_id").references(() => user.id),
+  period: text("period").notNull(),
+  gross_pay: text("gross_pay").notNull(),
+  tax_deductions: text("tax_deductions").notNull(),
+  net_pay: text("net_pay").notNull(),
+});
