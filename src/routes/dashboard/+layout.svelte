@@ -4,8 +4,9 @@
   export let data;
 </script>
 
-<div class="navbar bg-base-100">
+<div class="navbar bg-base-300">
   <div class="flex-1">
+    <img src="/logo-bar.svg" class="w-16" alt="logo" />
     <a class="btn btn-ghost text-xl" href="/dashboard">CoolCompany portal</a>
   </div>
   <div>
@@ -32,4 +33,6 @@
   </div>
 </div>
 
-<slot />
+<div class="m-4">
+  <slot />
+</div>
