@@ -41,3 +41,18 @@
     />
   </div>
 {/if}
+
+{#if data.role.id === 0}
+  <div class="mt-8 mb-8 text-lg">Administration modules:</div>
+
+  <div class="flex md:flex-row flex-col gap-4">
+    <Card
+      colorBackground="#ef4444"
+      colorText="white"
+      icon="mingcute:tool-fill"
+      text1="Accounting"
+      text2="Access the logs"
+      link="/dashboard/accounting"
+    />
+  </div>
+{/if}

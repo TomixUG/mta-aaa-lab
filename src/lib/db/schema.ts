@@ -33,3 +33,8 @@ export const paycheck = pgTable("paycheck", {
   tax_deductions: text("tax_deductions").notNull(),
   net_pay: text("net_pay").notNull(),
 });
+
+export const accounting = pgTable("accounting", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  content: text("content").notNull(),
+});
