@@ -10,7 +10,7 @@
 </script>
 
 <a
-  class="card hover:none w-48 btn h-40 m-0 p-0"
+  class="card hover:none w-52 btn h-40 m-0 p-0"
   style="background-color: {colorBackground}; color:{colorText}"
   href={link}
 >
