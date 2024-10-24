@@ -1,5 +1,5 @@
 import { redirect } from "@sveltejs/kit";
-import type { PageServerLoad } from "./$types";
+import type { Actions, PageServerLoad } from "./$types";
 
 import { db } from "$lib/db/db.server";
 import { paycheck, user } from "$lib/db/schema";
@@ -35,3 +35,37 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 
   return { name: queryName[0].name, query: query };
 };
+
+export const actions = {
+  default: async ({ request, locals, params }) => {
+    const auth = locals.auth;
+    if (auth == undefined) {
+      if (!auth) redirect(302, "/auth");
+    }
+
+    // normal users dont have access
+    if (auth.role.id === 2) {
+      redirect(302, "/dashboard/forbidden");
+    }
+
+    const employeeId = params.slug;
+    if (!employeeId) {
+      redirect(302, "/dashboard");
+    }
+
+    const data = await request.formData();
+
+    const pay_period = data.get("pay_period");
+    const gross_pay = data.get("gross_pay");
+    const tax_deductions = data.get("tax_deductions");
+    const net_pay = data.get("net_pay");
+
+    await db.insert(paycheck).values({
+      user_id: employeeId,
+      period: pay_period,
+      gross_pay: gross_pay,
+      tax_deductions: tax_deductions,
+      net_pay: net_pay,
+    });
+  },
+} satisfies Actions;
