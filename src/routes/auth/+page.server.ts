@@ -3,7 +3,7 @@ import { fail, redirect } from "@sveltejs/kit";
 
 import type { Actions, PageServerLoad } from "./$types";
 import { db } from "$lib/db/db.server";
-import { token, user } from "$lib/db/schema";
+import { accounting, token, user } from "$lib/db/schema";
 import { eq, and } from "drizzle-orm";
 import constants from "$lib/constants";
 
@@ -27,7 +27,15 @@ export const actions: Actions = {
       .from(user)
       .where(and(eq(user.email, email), eq(user.password, password)));
 
+    const forwardedFor = request.headers.get("x-forwarded-for");
+    const ip = forwardedFor
+      ? forwardedFor.split(",")[0]
+      : request.headers.get("host"); // Fallback to host in local dev
+
     if (result.length !== 1) {
+      await db.insert(accounting).values({
+        content: `Invalid login attempt from ${ip} at ${new Date().toISOString()}`,
+      });
       return fail(400, {
         message: "Invalid login details",
       });
@@ -47,6 +55,10 @@ export const actions: Actions = {
       path: "/",
       maxAge: 1000 * 60 * 60 * 24 * 365,
       secure: false,
+    });
+
+    await db.insert(accounting).values({
+      content: `User ${email} logged in at ${new Date().toISOString()}`,
     });
 
     redirect(302, "/dashboard");

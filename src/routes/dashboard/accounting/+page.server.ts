@@ -3,7 +3,7 @@ import type { PageServerLoad } from "./$types";
 
 import { db } from "$lib/db/db.server";
 import { accounting, paycheck, user } from "$lib/db/schema";
-import { eq, sql } from "drizzle-orm";
+import { desc, eq, sql } from "drizzle-orm";
 
 export const load: PageServerLoad = async ({ params, locals }) => {
   const auth = locals.auth;
@@ -17,7 +17,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
   }
 
   // check the token
-  const query = await db.select().from(accounting);
+  const query = await db.select().from(accounting).orderBy(desc(accounting.id));
 
   return { query: query };
 };

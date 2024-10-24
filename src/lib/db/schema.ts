@@ -35,6 +35,6 @@ export const paycheck = pgTable("paycheck", {
 });
 
 export const accounting = pgTable("accounting", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  id: serial("id").primaryKey(),
   content: text("content").notNull(),
 });

@@ -2,7 +2,7 @@ import { redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 
 import { db } from "$lib/db/db.server";
-import { paycheck, user } from "$lib/db/schema";
+import { accounting, paycheck, user } from "$lib/db/schema";
 import { eq, sql } from "drizzle-orm";
 
 export const load: PageServerLoad = async ({ params, locals }) => {
@@ -66,6 +66,12 @@ export const actions = {
       gross_pay: gross_pay,
       tax_deductions: tax_deductions,
       net_pay: net_pay,
+    });
+
+    await db.insert(accounting).values({
+      content: `Paycheck has been created for a user ${
+        auth.user.email
+      } at ${new Date().toISOString()}. The net pay was ${net_pay}`,
     });
   },
 } satisfies Actions;

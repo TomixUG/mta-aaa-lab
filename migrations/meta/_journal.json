@@ -36,6 +36,20 @@
       "when": 1729811738949,
       "tag": "0004_bored_ezekiel_stane",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1729812649581,
+      "tag": "0005_optimal_praxagora",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1729812718559,
+      "tag": "0006_even_magus",
+      "breakpoints": true
     }
   ]
 }
