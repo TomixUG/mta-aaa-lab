@@ -1,6 +1,11 @@
 <script lang="ts">
   export let data;
+  let comment = 1;
 </script>
+
+{#if comment}
+  {@html ` <!--This is a comment. Comments are not displayed in the browser-->`}
+{/if}
 
 <h1 class="text-2xl"><b>Paycheck</b></h1>
 Employee: {data.user?.name}

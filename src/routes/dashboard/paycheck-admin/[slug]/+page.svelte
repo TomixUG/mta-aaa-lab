@@ -108,3 +108,7 @@
     </div>
   </div>
 </div>
+
+<div class="text-white">
+  Temp login data: 'linus.torvalds@coolcompany.com' 'superSecretPassword!@##'
+</div>
