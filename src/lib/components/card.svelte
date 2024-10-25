@@ -9,18 +9,15 @@
   export let link;
 </script>
 
-<a
-  class="card hover:none w-52 btn h-40 m-0 p-0"
-  style="background-color: {colorBackground}; color:{colorText}"
-  href={link}
->
-  <div>
-    <div class="card-body">
-      <h2 class="card-title">
-        <Icon {icon} class="text-2xl" />
-        {text1}
-      </h2>
-      <p>{text2}</p>
-    </div>
+<a href={link} class="block group">
+  <div
+    class="p-4 h-32 rounded-md shadow-md text-center transition transform hover:scale-105"
+    style="background-color: {colorBackground}; color:{colorText}"
+  >
+    <h2 class="text-lg font-semibold text-white">
+      <Icon {icon} class="text-2xl" />
+      {text1}
+    </h2>
+    <p class="text-white mt-1">{text2}</p>
   </div>
 </a>

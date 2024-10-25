@@ -7,7 +7,7 @@
 <div class="text-xl">Welcome {data.user.name},</div>
 <div>Your role is: <b>{data.role.name}</b></div>
 
-<div class="mt-8 mb-8 text-lg">You have access to the following modules:</div>
+<div class="mt-4 mb-4 text-lg">You have access to the following modules:</div>
 <div class="flex md:flex-row flex-col gap-4">
   <Card
     colorBackground="#16a34a"
@@ -28,7 +28,7 @@
 </div>
 
 {#if data.role.id === 1 || data.role.id === 0}
-  <div class="mt-8 mb-8 text-lg">Accounting modules:</div>
+  <div class="mt-4 mb-4 text-lg">Accounting modules:</div>
 
   <div class="flex md:flex-row flex-col gap-4">
     <Card
@@ -43,7 +43,7 @@
 {/if}
 
 {#if data.role.id === 0}
-  <div class="mt-8 mb-8 text-lg">Administration modules:</div>
+  <div class="mt-4 mb-4 text-lg">Administration modules:</div>
 
   <div class="flex md:flex-row flex-col gap-4">
     <Card
