@@ -4,6 +4,7 @@ import type { Actions, PageServerLoad } from "./$types";
 import { db } from "$lib/db/db.server";
 import { accounting, paycheck, user } from "$lib/db/schema";
 import { eq, sql } from "drizzle-orm";
+import type { Log } from "$lib/models/accounting";
 
 export const load: PageServerLoad = async ({ params, locals }) => {
   const auth = locals.auth;
@@ -68,10 +69,23 @@ export const actions = {
       net_pay: net_pay,
     });
 
-    await db.insert(accounting).values({
-      content: `Paycheck has been created for a user ${
+    const log: Log = {
+      dateTime: new Date(),
+      whereItHappened: "/paycheck-admin",
+      severity: "high",
+      description: `
+      Paycheck has been created for a user ${
         auth.user.email
       } at ${new Date().toISOString()}. The net pay was ${net_pay}`,
+    };
+
+    await db.insert(accounting).values({
+      content: JSON.stringify(log),
     });
+    // await db.insert(accounting).values({
+    //   content: `Paycheck has been created for a user ${
+    //     auth.user.email
+    //   } at ${new Date().toISOString()}. The net pay was ${net_pay}`,
+    // });
   },
 } satisfies Actions;

@@ -5,7 +5,7 @@
 <h1 class="text-2xl"><b>Attendance</b></h1>
 Employee: {data.user?.name}
 <div class="mt-4">
-  {#if data.role.id == 0}
+  {#if data.user.id === 0}
     <div class="overflow-x-auto">
       <table class="table">
         <!-- head -->
@@ -80,7 +80,7 @@ Employee: {data.user?.name}
         </tbody>
       </table>
     </div>
-  {:else if data.role.id == 1}
+  {:else if data.user.id === 1}
     <div class="overflow-x-auto">
       <table class="table">
         <!-- head -->
@@ -155,7 +155,7 @@ Employee: {data.user?.name}
         </tbody>
       </table>
     </div>
-  {:else}
+  {:else if data.user.id === 2}
     <div class="overflow-x-auto">
       <table class="table">
         <!-- head -->

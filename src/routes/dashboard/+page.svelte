@@ -54,5 +54,13 @@
       text2="Access the logs"
       link="/dashboard/accounting"
     />
+    <Card
+      colorBackground="#fa616e"
+      colorText="white"
+      icon="mdi:user"
+      text1="Create new employee"
+      text2="And give them a role"
+      link="/dashboard/create-employee"
+    />
   </div>
 {/if}

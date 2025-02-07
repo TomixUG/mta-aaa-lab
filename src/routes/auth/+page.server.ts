@@ -57,9 +57,20 @@ export const actions: Actions = {
       secure: false,
     });
 
+    const log: Log = {
+      dateTime: new Date(),
+      whereItHappened: "/auth",
+      severity: "medium",
+      description: `User ${email} logged in at ${new Date().toISOString()}`,
+    };
+
     await db.insert(accounting).values({
-      content: `User ${email} logged in at ${new Date().toISOString()}`,
+      content: JSON.stringify(log),
     });
+
+    // await db.insert(accounting).values({
+    //   content: `User ${email} logged in at ${new Date().toISOString()}`,
+    // });
 
     redirect(302, "/dashboard");
   },

@@ -1,5 +1,19 @@
 <script lang="ts">
   export let data;
+
+  let logs = data.query.map((item) => ({
+    ...item,
+    content: safeParse(item.content),
+  }));
+
+  function safeParse(content) {
+    try {
+      return JSON.parse(content);
+    } catch (error) {
+      console.error("Invalid JSON:", content);
+      return null;
+    }
+  }
 </script>
 
 <h1 class="text-2xl"><b>Accounting</b></h1>
@@ -12,17 +26,30 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Content</th>
+          <th>Date/Time</th>
+          <th>Location</th>
+          <th>Severity</th>
+          <th>Description</th>
         </tr>
       </thead>
-      {#each data.query as item, index}
-        <tbody>
-          <tr class={index % 2 !== 1 ? "bg-base-200" : ""}>
-            <td>{item.id}</td>
-            <td>{item.content}</td>
-          </tr>
-        </tbody>
-      {/each}
+      <tbody>
+        {#each logs as item, index}
+          {#if item.content}
+            <!-- Ensure valid JSON -->
+            <tr class={index % 2 !== 1 ? "bg-base-200" : ""}>
+              <td>{item.id}</td>
+              <td>{item.content.dateTime}</td>
+              <td>{item.content.whereItHappened}</td>
+              <td>{item.content.severity}</td>
+              <td>{item.content.description}</td>
+            </tr>
+          {:else}
+            <tr>
+              <td colspan="5">Invalid JSON</td>
+            </tr>
+          {/if}
+        {/each}
+      </tbody>
     </table>
   </div>
 </div>
