@@ -38,7 +38,19 @@
             <!-- Ensure valid JSON -->
             <tr class={index % 2 !== 1 ? "bg-base-200" : ""}>
               <td>{item.id}</td>
-              <td>{item.content.dateTime}</td>
+              <td
+                >{new Date(item.content.dateTime.toString()).toLocaleString(
+                  "cs-CZ",
+                  {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                  }
+                )}</td
+              >
               <td>{item.content.whereItHappened}</td>
               <td>{item.content.severity}</td>
               <td>{item.content.description}</td>
