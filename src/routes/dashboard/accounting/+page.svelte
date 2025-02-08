@@ -36,7 +36,7 @@
         {#each logs as item, index}
           {#if item.content}
             <!-- Ensure valid JSON -->
-            <tr class={index % 2 !== 1 ? "bg-base-200" : ""}>
+            <tr style={index % 2 !== 1 ? "bg-base-200" : ""}>
               <td>{item.id}</td>
               <td
                 >{new Date(item.content.dateTime.toString()).toLocaleString(
