@@ -33,9 +33,21 @@ export const actions: Actions = {
       : request.headers.get("host"); // Fallback to host in local dev
 
     if (result.length !== 1) {
+      // await db.insert(accounting).values({
+      //   content: `Invalid login attempt from ${ip} at ${new Date().toISOString()}`,
+      // });
+
+      const log: Log = {
+        dateTime: new Date(),
+        whereItHappened: "/auth",
+        severity: "medium",
+        description: `Invalid login attempt from ${ip} at ${new Date().toISOString()}`,
+      };
+
       await db.insert(accounting).values({
-        content: `Invalid login attempt from ${ip} at ${new Date().toISOString()}`,
+        content: JSON.stringify(log),
       });
+
       return fail(400, {
         message: "Invalid login details",
       });

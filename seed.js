@@ -27,7 +27,7 @@ async function seed() {
 
     await db.execute(sql`
       insert into "user" (id, name, email, password, role_id) values 
-      (0, 'Linus Torvalds', 'linus.torvalds@gmail.com', 'superSecretPassword!@##', 0),
+      (0, 'Linus Torvalds', 'linus.torvalds@coolcompany.com', 'superSecretPassword!@##', 0),
       (1, 'Jane Purple', 'jane.purple@coolcompany.com', 'janePurple123', 1),
       (2, 'Ben Heinz', 'ben.heinz@coolcompany.com', 'penguinsAreCool', 2)
       ON CONFLICT (id) DO NOTHING;
